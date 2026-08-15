@@ -1,0 +1,128 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Producción y difusión docente</title><style>
+:root{--blue:#0B3F5C;--green:#19B94B;--gold:#EAB51D;--ink:#18313d;--muted:#64777f;--line:#dbe4e6;--soft:#f6f9f9}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#fff;font-family:Montserrat,Avenir Next,Segoe UI,Arial,sans-serif;color:var(--ink)}
+.page{height:100vh;padding:11px 13px;display:grid;grid-template-rows:78px 1fr;gap:9px}
+.kpis{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.kpi{border:1px solid var(--line);border-radius:15px;padding:10px 15px;display:flex;align-items:center;box-shadow:0 6px 18px rgba(11,63,92,.05);position:relative;overflow:hidden}.kpi:before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--blue)}.kpi:nth-child(2):before{background:var(--green)}.kpi:nth-child(3):before{background:var(--gold)}.kpi strong{font-size:29px;color:var(--blue);font-weight:900}.kpi span{display:block;font-size:10.5px;color:var(--muted);font-weight:500;margin-top:4px}
+.main{display:grid;grid-template-columns:.92fr 1.38fr;gap:10px;min-height:0}
+.panel{border:1px solid var(--line);border-radius:18px;background:#fff;box-shadow:0 8px 24px rgba(11,63,92,.06);padding:14px;overflow:hidden;display:grid;grid-template-rows:40px 1fr}
+.head{display:flex;justify-content:space-between;align-items:flex-start}.head strong{font-size:17px;color:var(--blue)}.head span{font-size:8.5px;color:var(--muted)}
+.editorialList{overflow-y:auto;padding-right:6px;display:flex;flex-direction:column;gap:9px;scrollbar-width:thin}
+.edItem{border:1px solid var(--line);border-radius:13px;padding:9px 10px;display:grid;grid-template-columns:54px 62px 1fr;gap:9px;cursor:pointer;position:relative;background:#fff}.edItem:before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;border-radius:13px 0 0 13px;background:var(--green)}.edItem.chapter:before{background:var(--blue)}
+.edCover{width:54px;height:74px;object-fit:contain;border:1px solid var(--line);border-radius:5px;background:#fff}.edYear{font-size:20px;font-weight:900;color:var(--green)}.chapter .edYear{color:var(--blue)}.edType{font-size:7px;text-transform:uppercase;color:var(--muted);font-weight:900;letter-spacing:.35px;margin-top:3px}.edItem b{font-size:11px;line-height:1.22;color:var(--blue);font-weight:700}.edItem p{font-size:8.2px;line-height:1.22;color:var(--muted);margin:6px 0 0}
+.timelineWrap{overflow-y:auto;padding-right:6px;scrollbar-width:thin}
+.timelineList{position:relative;padding:4px 0 12px 90px}
+.timelineList:before{content:"";position:absolute;left:56px;top:8px;bottom:8px;width:2px;background:#dce5e8}
+.trow{position:relative;margin-bottom:9px;min-height:72px}
+.tyear{position:absolute;left:-88px;top:7px;width:52px;text-align:right;font-size:14px;font-weight:500;color:var(--blue)}
+.tdot{position:absolute;left:-26px;top:13px;width:14px;height:14px;border-radius:50%;box-shadow:0 0 0 4px #fff}.trow.actas .tdot{background:var(--blue)}.trow.com .tdot{background:var(--green)}.trow.inv .tdot{background:var(--gold)}
+.tcard{border:1px solid var(--line);border-radius:12px;cursor:default;padding:9px 10px;cursor:pointer;position:relative;background:#fff}.tcard:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:12px 0 0 12px;background:var(--blue)}.trow.com .tcard:before{background:var(--green)}.trow.inv .tcard:before{background:var(--gold)}
+.tcard b{display:block;font-size:10.2px;line-height:1.2;color:var(--blue);font-weight:700}.tcard p{font-size:8px;line-height:1.22;color:var(--muted);margin:6px 0 0}.tbadge{display:inline-block;margin-top:5px;padding:3px 6px;border-radius:99px;background:var(--soft);font-size:6.8px;font-weight:850;color:var(--muted)}
+.legend{display:flex;gap:10px;font-size:8px;color:var(--muted);align-items:center}.legend span{display:flex;align-items:center;gap:4px}.ldot{width:9px;height:9px;border-radius:50%}.ldot.actas{background:var(--blue)}.ldot.com{background:var(--green)}.ldot.inv{background:var(--gold)}
+.drawer{position:fixed;top:14px;right:14px;width:min(500px,45vw);height:calc(100vh - 28px);background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 14px 38px rgba(11,63,92,.16);padding:18px 20px;transform:translateX(110%);transition:.25s;z-index:30;overflow:auto}.drawer.open{transform:translateX(0)}.close{float:right;width:30px;height:30px;border:1px solid var(--line);border-radius:50%;background:#fff;color:var(--blue);font-weight:900;cursor:pointer}.drawer .dy{color:var(--green);font-weight:900;font-size:12px}.drawer h2{font-size:19px;color:var(--blue);line-height:1.25}.drawer p{font-size:11px;color:var(--muted);line-height:1.45}.badge{display:inline-block;padding:6px 9px;border-radius:99px;font-size:9px;font-weight:850;background:#edf2f4;color:var(--blue)}
+.imgGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}.imgGrid.one{grid-template-columns:1fr}.drawerImg{width:100%;max-height:520px;object-fit:contain;border-radius:8px;border:1px solid var(--line);background:#fff}
+@media(max-width:1100px){.page{padding:8px}.kpi strong{font-size:24px}.kpi span{font-size:8.5px}.head strong{font-size:14px}.tcard b{font-size:8.4px}}
+</style>
+<style id="production-v2-refinements">
+.pubLabel{display:block;font-size:6.5px;letter-spacing:.25px;text-transform:uppercase;color:#94a1a6;font-weight:800;margin-bottom:2px}
+.edCover{cursor:zoom-in}
+.tcard{padding-top:10px!important;padding-bottom:10px!important}
+</style>
+
+<style id="diffusion-static">
+.timelineList .tcard{cursor:default!important}
+</style>
+</head><body><main class="page"><section class="kpis">
+<div class="kpi"><div><strong>14</strong><span>Aportaciones de innovación docente</span></div></div>
+<div class="kpi"><div><strong>4</strong><span>Publicaciones y materiales docentes</span></div></div>
+<div class="kpi"><div><strong>10</strong><span>Contribuciones en congresos y conferencias docentes</span></div></div>
+</section>
+<section class="main">
+<article class="panel"><div class="head"><strong>Producción editorial docente</strong><span>Desplaza y clica para ver detalle</span></div><div class="editorialList"><div class="edItem" onclick="openMat(0)"><img class="edCover" src="assets/cover_2014.png" alt="Portada"><div><div class="edYear">2014</div><div class="edType">Libro</div></div><div><b>Psicología de los recursos humanos</b><p><span class="pubLabel">Publicación / editorial</span>Low Cost Books</p></div></div><div class="edItem chapter" onclick="openMat(1)"><img class="edCover" src="assets/cover_2015.png" alt="Portada"><div><div class="edYear">2015</div><div class="edType">Capítulo de libro</div></div><div><b>Integración de la impulsividad en los modelos comprehensivos de personalidad</b><p><span class="pubLabel">Publicación / editorial</span>Bases Teóricas y clínicas del comportamiento impulsivo · Ediciones San Juan de Dios</p></div></div><div class="edItem chapter" onclick="openMat(2)"><img class="edCover" src="assets/cover_2018.png" alt="Portada"><div><div class="edYear">2018</div><div class="edType">Capítulo de libro</div></div><div><b>Psicología clínica y de la salud</b><p><span class="pubLabel">Publicación / editorial</span>Cuaderno de Actividades de Evaluación Psicológica · Tirant Lo Blanch</p></div></div><div class="edItem chapter" onclick="openMat(3)"><img class="edCover" src="assets/cover_2020.png" alt="Portada"><div><div class="edYear">2020</div><div class="edType">Capítulo de libro</div></div><div><b>Clinical and health psychology assessment</b><p><span class="pubLabel">Publicación / editorial</span>Psychological Assessment Practical Booklet · Tirant Lo Blanch</p></div></div></div></article>
+<article class="panel"><div class="head"><strong>Difusión de la innovación docente</strong><div class="legend">
+<span><i class="ldot actas"></i>Comunicación / publicada en actas</span><span><i class="ldot com"></i>Comunicación</span><span><i class="ldot inv"></i>Conferencia invitada</span>
+</div></div><div class="timelineWrap"><div class="timelineList"><div class="trow actas">
+      <div class="tyear">2011</div><div class="tdot"></div>
+      <div class="tcard"><b>Evaluación continua mediante la utilización de un sistema electrónico de respuesta</b><p>III Jornada nacional sobre estudios universitarios · Castellón</p></div>
+    </div><div class="trow actas">
+      <div class="tyear">2011</div><div class="tdot"></div>
+      <div class="tcard"><b>Continuous assessment with the use of an electronic response system</b><p>3rd Annual International Conference on Education and New Learning Technologies · Barcelona</p></div>
+    </div><div class="trow actas">
+      <div class="tyear">2013</div><div class="tdot"></div>
+      <div class="tcard"><b>Evaluación continua en la asignatura de Teorías de la Personalidad</b><p>IV Jornada nacional sobre estudios universitarios · Castellón</p></div>
+    </div><div class="trow inv">
+      <div class="tyear">2014</div><div class="tdot"></div>
+      <div class="tcard"><b>Teoría motivacional de Gray y su relación con las conductas de salud</b><p>Procesos Psicológicos Básicos I · Universitat de Lleida · Lleida</p></div>
+    </div><div class="trow com">
+      <div class="tyear">2018</div><div class="tdot"></div>
+      <div class="tcard"><b>Proyecto colaborativo con la aplicación Socrative Teacher</b><p>I Escuela de Primavera de la Sociedad Española para el Avance de la Evaluación Psicológica · Málaga</p></div>
+    </div><div class="trow com">
+      <div class="tyear">2019</div><div class="tdot"></div>
+      <div class="tcard"><b>Juegos de mesa y evaluación de la inteligencia: Una experiencia didáctica de aprendizaje basado en juegos</b><p>II Escuela de Primavera de la Sociedad Española para el Avance de la Evaluación Psicológica · Barcelona</p></div>
+    </div><div class="trow actas">
+      <div class="tyear">2020</div><div class="tdot"></div>
+      <div class="tcard"><b>Relation of gamification with the final year score</b><p>14th International Technology, Education and Development Conference · Valencia</p></div>
+    </div><div class="trow actas">
+      <div class="tyear">2022</div><div class="tdot"></div>
+      <div class="tcard"><b>Teaching innovation in the Personality Psychology course: the Mentimer tool</b><p>ATIDES2022: Avances en tecnologías, innovación y desafíos de la educación superior · Castellón</p></div>
+    </div><div class="trow actas">
+      <div class="tyear">2022</div><div class="tdot"></div>
+      <div class="tcard"><b>Online teaching during the pandemic: Teaching practices of “personality, assessment and treatment during childhood” through different activities embedded in the virtual classroom</b><p>16th International Technology, Education and Development Conference · Virtual</p></div>
+    </div><div class="trow actas">
+      <div class="tyear">2026</div><div class="tdot"></div>
+      <div class="tcard"><b>Simulating the child psychological assessment process through interactive infographics: Design and evaluation of a pilot educational innovation</b><p>19th International Conference of Education, Research and Innovation · Sevilla</p></div>
+    </div></div></div></article></section></main>
+<aside class="drawer" id="drawer"><button class="close" onclick="closeD()">✕</button><div id="dc"></div></aside><script>
+const M=[{"year": 2014, "type": "Libro", "authors": "Martínez, I., Meneghel, I., & Mezquita, L.", "title": "Psicología de los recursos humanos", "publication": "Low Cost Books", "isbn": "978-84-942286-0-5", "images": ["assets/cover_2014.png"], "cover": "assets/cover_2014.png"}, {"year": 2015, "type": "Capítulo de libro", "authors": "Moya, J., March, J., Mezquita, L.", "title": "Integración de la impulsividad en los modelos comprehensivos de personalidad", "publication": "Bases Teóricas y clínicas del comportamiento impulsivo · Ediciones San Juan de Dios", "isbn": "978-84-939878-9-3", "images": ["assets/chapter_2015.png"], "cover": "assets/cover_2015.png"}, {"year": 2018, "type": "Capítulo de libro", "authors": "Fuentes-Durá, I., Mezquita, L., Montañés-Martí, S.", "title": "Psicología clínica y de la salud", "publication": "Cuaderno de Actividades de Evaluación Psicológica · Tirant Lo Blanch", "isbn": "978-84-9190-803-6", "images": ["assets/chapter_2018.png"], "cover": "assets/cover_2018.png"}, {"year": 2020, "type": "Capítulo de libro", "authors": "Fuentes-Durá, I., Mezquita, L., Montañés-Martí, S.", "title": "Clinical and health psychology assessment", "publication": "Psychological Assessment Practical Booklet · Tirant Lo Blanch", "isbn": "9788413780900", "images": ["assets/chapter_2020.png"], "cover": "assets/cover_2020.png"}];
+const C=[{"year": 2011, "title": "Evaluación continua mediante la utilización de un sistema electrónico de respuesta", "event": "III Jornada nacional sobre estudios universitarios", "place": "Castellón", "format": "Publicado en actas"}, {"year": 2011, "title": "Continuous assessment with the use of an electronic response system", "event": "3rd Annual International Conference on Education and New Learning Technologies", "place": "Barcelona", "format": "Publicado en actas"}, {"year": 2013, "title": "Evaluación continua en la asignatura de Teorías de la Personalidad", "event": "IV Jornada nacional sobre estudios universitarios", "place": "Castellón", "format": "Publicado en actas"}, {"year": 2014, "title": "Teoría motivacional de Gray y su relación con las conductas de salud", "event": "Procesos Psicológicos Básicos I · Universitat de Lleida", "place": "Lleida", "format": "Conferencia invitada"}, {"year": 2018, "title": "Proyecto colaborativo con la aplicación Socrative Teacher", "event": "I Escuela de Primavera de la Sociedad Española para el Avance de la Evaluación Psicológica", "place": "Málaga", "format": "Comunicación"}, {"year": 2019, "title": "Juegos de mesa y evaluación de la inteligencia: Una experiencia didáctica de aprendizaje basado en juegos", "event": "II Escuela de Primavera de la Sociedad Española para el Avance de la Evaluación Psicológica", "place": "Barcelona", "format": "Comunicación"}, {"year": 2020, "title": "Relation of gamification with the final year score", "event": "14th International Technology, Education and Development Conference", "place": "Valencia", "format": "Publicado en actas"}, {"year": 2022, "title": "Teaching innovation in the Personality Psychology course: the Mentimer tool", "event": "ATIDES2022: Avances en tecnologías, innovación y desafíos de la educación superior", "place": "Castellón", "format": "Publicado en actas"}, {"year": 2022, "title": "Online teaching during the pandemic: Teaching practices of “personality, assessment and treatment during childhood” through different activities embedded in the virtual classroom", "event": "16th International Technology, Education and Development Conference", "place": "Virtual", "format": "Publicado en actas"}, {"year": 2026, "title": "Simulating the child psychological assessment process through interactive infographics: Design and evaluation of a pilot educational innovation", "event": "19th International Conference of Education, Research and Innovation", "place": "Sevilla", "format": "Publicado en actas"}];
+function openMat(i){
+ const x=M[i];
+ const imgs=(x.images||[]).map(src=>`<img class="drawerImg" src="${src}" alt="">`).join("");
+ const grid=imgs?`<div class="imgGrid ${x.images.length===1?"one":""}">${imgs}</div>`:"";
+ document.getElementById("dc").innerHTML=`<div class="dy">${x.year}</div><h2>${x.title}</h2><span class="badge">${x.type}</span>${grid}<p><b>Autoría:</b> ${x.authors}</p><p><b>Publicación / editorial:</b> ${x.publication}</p><p><b>ISBN:</b> ${x.isbn}</p>`;
+ document.getElementById("drawer").classList.add("open");
+}
+function openCon(i){
+ const x=C[i];
+ document.getElementById("dc").innerHTML=`<div class="dy">${x.year}</div><h2>${x.title}</h2><span class="badge">${x.format}</span><p><b>Evento:</b> ${x.event}</p><p><b>Lugar:</b> ${x.place}</p>`;
+ document.getElementById("drawer").classList.add("open");
+}
+function closeD(){document.getElementById("drawer").classList.remove("open")}
+</script>
+<script id="cover-zoom-js">
+function openCover(src, title){
+  const dc=document.getElementById("dc");
+  if(!dc) return;
+  dc.innerHTML=`<div class="dy">Portada</div><h2>${title}</h2><div class="imgGrid one"><img class="drawerImg" src="${src}" alt="Portada"></div>`;
+  document.getElementById("drawer").classList.add("open");
+}
+document.addEventListener("DOMContentLoaded", function(){
+  document.querySelectorAll(".edItem .edCover").forEach(function(img){
+    img.addEventListener("click", function(ev){
+      ev.stopPropagation();
+      const card=img.closest(".edItem");
+      const title=card ? card.querySelector("b")?.textContent || "Portada" : "Portada";
+      openCover(img.getAttribute("src"), title);
+    });
+  });
+});
+</script>
+
+<script id="click-outside-close">
+document.addEventListener('click', function(ev){
+  const d=document.getElementById('drawer');
+  if(!d) return;
+  const isOpen=d.classList.contains('open') || d.classList.contains('show');
+  if(!isOpen) return;
+  const clickedInside=d.contains(ev.target);
+  const clickedTrigger=ev.target.closest('[onclick*="open"]');
+  if(!clickedInside && !clickedTrigger){
+    if(typeof closeD==='function') closeD();
+    else {
+      d.classList.remove('open');
+      d.classList.remove('show');
+    }
+  }
+});
+</script>
+</body></html>

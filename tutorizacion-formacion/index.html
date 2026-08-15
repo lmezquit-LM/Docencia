@@ -1,0 +1,163 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tutorización y formación de estudiantes</title>
+<style>
+:root{--blue:#0B3F5C;--green:#19B94B;--gold:#EAB51D;--ink:#18313d;--muted:#6b7c83;--line:#dce5e7;--soft:#f7f9f9}
+*{box-sizing:border-box}html,body{margin:0;background:#fff;color:var(--ink);font-family:Montserrat,Avenir Next,Segoe UI,Arial,sans-serif}
+.page{width:100%;min-width:0;height:100vh;min-height:680px;padding:18px 24px;overflow:hidden}
+.top{display:grid;grid-template-columns:1.15fr .85fr .85fr;gap:12px;height:76px}
+.kpi{position:relative;border:1px solid var(--line);border-radius:16px;padding:10px 14px;background:#fff;box-shadow:0 4px 14px rgba(11,63,92,.04);display:flex;align-items:center;gap:14px;overflow:hidden}
+.kpi:before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--blue)}.kpi.green:before{background:var(--green)}.kpi.gold:before{background:var(--gold)}
+.kpi strong{font-size:29px;color:var(--blue);line-height:1;font-weight:900}.kpi.green strong{color:var(--green)}.kpi.gold strong{color:var(--gold)}
+.kpi span{font-size:11px;color:var(--muted);font-weight:500;line-height:1.25}.kpi small{display:block;font-size:7.5px;margin-top:3px;color:#93a1a6}
+.title{height:66px;padding-top:10px}.title h1{margin:0;color:var(--blue);font-size:27px;letter-spacing:-.02em}.title p{margin:4px 0 0;color:var(--muted);font-size:9px}
+.main{height:calc(100vh - 154px);min-height:500px;display:grid;grid-template-columns:1.12fr .88fr;gap:12px}
+.panel{border:1px solid var(--line);border-radius:18px;background:#fff;box-shadow:0 5px 18px rgba(11,63,92,.04);overflow:hidden}
+.head{height:45px;border-bottom:1px solid var(--line);padding:10px 14px;display:flex;justify-content:space-between;align-items:center}
+.head strong{color:var(--blue);font-size:12px}.head span{font-size:7.5px;color:var(--muted)}
+.left{display:grid;grid-template-rows:45px 1fr}
+.bands{padding:14px 16px 10px;display:flex;flex-direction:column;justify-content:space-between;gap:8px}
+.band{cursor:pointer;border:1px solid #e3eaec;border-radius:13px;padding:10px 12px 9px;transition:.15s;background:#fff}
+.band:hover{transform:translateX(2px);box-shadow:0 5px 14px rgba(11,63,92,.07)}.bandTop{display:flex;justify-content:space-between;gap:10px;align-items:flex-end}
+.bandTop b{font-size:10.5px;color:var(--blue)}.bandTop em{font-style:normal;font-size:18px;font-weight:900;color:var(--blue)}
+.track{height:13px;background:#eef3f4;border-radius:7px;margin:7px 0 5px;overflow:hidden}.fill{height:100%;border-radius:7px;background:var(--green)}.band:nth-child(2) .fill{background:var(--gold)}.band:nth-child(3) .fill{background:#93A2A8}.band:nth-child(4) .fill{background:var(--blue)}
+.keywords{font-size:7.5px;color:var(--muted)}.note{font-size:6.8px;color:#98a5aa;margin-top:2px}
+.right{display:grid;grid-template-rows:45px 1fr 130px}
+.path{padding:11px 14px 8px;display:flex;flex-direction:column;gap:6px;overflow:hidden}
+.step{display:grid;grid-template-columns:33px 1fr 67px;gap:8px;align-items:center;border:1px solid #e4eaec;border-radius:11px;padding:6px 8px;min-height:43px}
+.ico{width:27px;height:27px;border-radius:8px;background:#eef4f7;color:var(--blue);display:grid;place-items:center;font-size:15px;font-weight:900}
+.step:nth-child(3n+2) .ico{background:#eaf8ee;color:var(--green)}.step:nth-child(3n) .ico{background:#fff6d9;color:#b88700}
+.step b{display:block;font-size:8.4px;color:var(--blue);line-height:1.1}.step span{display:block;font-size:7px;color:var(--muted);margin-top:2px}.step time{font-size:7.3px;color:var(--muted);text-align:right;font-weight:700}
+.estudia{border-top:1px solid var(--line);padding:9px 14px 10px;background:#fbfcfc}.estudiaTop{display:flex;justify-content:space-between;align-items:baseline}.estudiaTop b{font-size:10px;color:var(--blue)}.estudiaTop strong{font-size:20px;color:var(--green)}.estudia p{margin:2px 0 7px;font-size:7px;color:var(--muted)}.years{display:grid;grid-template-columns:repeat(9,1fr);gap:3px}.yr{background:#fff;border:1px solid #dfe7e9;border-radius:7px;text-align:center;padding:5px 1px;font-size:6.5px;color:var(--blue);font-weight:700}
+.drawer{position:absolute;right:34px;top:184px;width:535px;height:542px;background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 14px 40px rgba(11,63,92,.16);display:none;z-index:10;overflow:hidden}
+.drawer.show{display:block}.drawerHead{height:58px;padding:12px 15px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}.drawerHead b{color:var(--blue);font-size:12px}.close{border:0;background:#eef3f4;border-radius:50%;width:28px;height:28px;cursor:pointer;color:var(--blue);font-size:17px}
+.drawerBody{height:484px;overflow:auto;padding:9px 13px}.tfg{padding:8px 7px;border-bottom:1px solid #edf1f2}.tfg b{display:block;font-size:8.2px;color:var(--blue);line-height:1.25}.tfg span{font-size:6.8px;color:var(--muted)} 
+</style>
+<style id="tutoring-scroll-fix">
+.right{grid-template-rows:45px minmax(0,1fr)!important;overflow:hidden!important}
+.rightScroll{min-height:0;display:grid;grid-template-rows:minmax(0,1fr) 130px;overflow:hidden}
+.path{min-height:0;overflow-y:auto!important;scrollbar-width:thin;padding:10px 14px 8px!important}
+.estudia{position:relative;overflow:visible}
+</style>
+<style id="genially-fix">
+.step.predoc .ico{background:#eef4f7!important;color:var(--blue)!important}
+.step.novel .ico{background:#eaf8ee!important;color:var(--green)!important}
+.step.collab .ico{background:#fff6d9!important;color:#b88700!important}
+.step.practices .ico{background:#f0f3f4!important;color:#65777e!important}
+.step.init .ico{background:#f4eef8!important;color:#6f5684!important}
+@media(max-width:1100px){.page{padding:14px 16px}.kpi strong{font-size:27px}.title h1{font-size:24px}.main{grid-template-columns:1.08fr .92fr}.band{padding:8px 10px}.step{min-height:40px;padding:5px 7px}}
+@media(max-width:820px){.page{height:auto;min-height:100vh;overflow:auto}.main{height:auto;grid-template-columns:1fr}.rightScroll{max-height:520px}}
+</style>
+<style id="productivity-refinement">
+.step span b{color:var(--green);font-weight:800}
+.kpi small b{color:var(--green);font-weight:900}
+.title p{font-size:9px;line-height:1.25}
+.path{gap:5px!important}
+.step{min-height:41px!important}
+</style>
+
+<style id="preview-productivity">
+.kpiTFG{display:grid!important;grid-template-columns:54px 1fr auto!important;column-gap:12px!important}
+.kpiTFGText span{display:block}
+.kpiTFGText small{display:block;margin-top:4px}
+.kpiFlow{display:flex;align-items:center;gap:8px;padding-left:10px;border-left:1px solid var(--line)}
+.kpiFlow>div{text-align:center;min-width:47px}
+.kpiFlow b{display:block;font-size:20px;line-height:1;color:var(--green);font-weight:900}
+.kpiFlow small{font-size:6.5px!important;color:var(--muted)!important;margin:2px 0 0!important;white-space:nowrap}
+.flowArrow{font-size:18px;color:var(--blue);font-weight:900}.flowSep{color:#a9b4b8}
+.impactRow{margin-top:6px;padding:5px 7px;border-radius:7px;background:#f7faf9;border-left:3px solid var(--green)}
+.impactRow.article{background:#fff9e8;border-left-color:var(--gold)}
+.impactRow span{display:block!important;font-size:6px!important;letter-spacing:.3px;font-weight:900!important;color:var(--green)!important}
+.impactRow.article span{color:#aa7c00!important}
+.impactRow p{font-size:7.2px;color:var(--muted);line-height:1.23;margin:2px 0 0}
+</style>
+
+<style id="student-productivity-click">
+.studentInteractive{cursor:pointer;transition:.15s}
+.studentInteractive:hover{box-shadow:0 5px 14px rgba(11,63,92,.08);transform:translateX(2px)}
+.studentOutput{padding:9px 8px;border-bottom:1px solid #edf1f2}
+.studentOutput>span{display:block;font-size:6.2px;font-weight:900;letter-spacing:.3px;color:var(--green);margin-bottom:3px}
+.studentOutput.article>span{color:#aa7c00}
+.studentOutput b{display:block;font-size:8.4px;line-height:1.25;color:var(--blue)}
+.studentOutput p{font-size:7px;color:var(--muted);margin:3px 0 0;line-height:1.25}
+</style>
+</head><body><main class="page">
+<section class="top">
+<div class="kpi kpiTFG">
+      <strong>31</strong>
+      <div class="kpiTFGText">
+        <span>TFG tutorizados</span>
+        <small>2013–2014 → 2025–2026</small>
+      </div>
+      <div class="kpiFlow">
+        <span class="flowArrow">→</span>
+        <div><b>16</b><small>congresos</small></div>
+        <span class="flowSep">·</span>
+        <div><b>1</b><small>artículo</small></div>
+      </div>
+    </div>
+<div class="kpi green"><strong>8</strong><div><span>Tutorizaciones especializadas</span><small>6 estudiantes · becas, contratos, prácticas y formación</small></div></div>
+<div class="kpi gold"><strong>9</strong><div><span>Proyectos Estudia e Investiga</span><small>Tutorización de alumnado · 9 cursos académicos</small></div></div>
+</section>
+<section class="title"><h1>Tutorización y formación de estudiantes</h1><p>Dirección de TFG, formación investigadora y tutorización de alumnado en diferentes etapas de su trayectoria académica.</p></section>
+<section class="main">
+<article class="panel left"><div class="head"><strong>Huella temática de los TFG tutorizados</strong><span>Clica en cada banda para consultar los TFG vinculados</span></div>
+<div class="bands">
+<div class="band" onclick="openBand(0)"><div class="bandTop"><b>Personalidad y diferencias individuales</b><em>18</em></div><div class="track"><div class="fill" style="width:100.0%"></div></div><div class="keywords">personalidad · FFM · neuroticismo · impulsividad</div></div><div class="band" onclick="openBand(1)"><div class="bandTop"><b>Adicciones y conductas adictivas</b><em>16</em></div><div class="track"><div class="fill" style="width:88.9%"></div></div><div class="keywords">alcohol · cannabis · gambling · gaming</div></div><div class="band" onclick="openBand(2)"><div class="bandTop"><b>Psicopatología y salud mental</b><em>14</em></div><div class="track"><div class="fill" style="width:77.8%"></div></div><div class="keywords">problemas interiorizados · problemas exteriorizados · depresión · conducta antisocial</div></div><div class="band" onclick="openBand(3)"><div class="bandTop"><b>Evaluación, instrumentos y psicometría</b><em>8</em></div><div class="track"><div class="fill" style="width:44.4%"></div></div><div class="keywords">cuestionarios · validez · fiabilidad · adaptación</div></div>
+<div class="note">Las categorías no son excluyentes: un TFG puede contribuir a más de una banda temática.</div>
+</div></article>
+<article class="panel right"><div class="head"><strong>Itinerarios de formación y tutorización</strong><span>Modalidades registradas</span></div><div class="rightScroll"><div class="path">
+<div class="step collab"><div class="ico">◇</div><div><b>Beca de colaboración MEC</b><span>Andrea Cuevas Carda · 1 curso académico</span></div><time>2015–2016</time></div><div class="step practices studentInteractive" onclick="openStudent('alba')"><div class="ico">▣</div><div><b>Prácticas académicas externas</b><span>Alba Monfil Carratalá · 1 curso académico · <b>2 congresos · 1 artículo científico</b></span></div><time>2018–2019</time></div><div class="step predoc"><div class="ico">↑</div><div><b>Contrato predoctoral FPI</b><span>Verónica Vidal Arenas · 4 cursos académicos</span></div><time>2019–2024</time></div><div class="step novel"><div class="ico">◎</div><div><b>Formación Profesorado Novel UJI</b><span>Verónica Vidal Arenas · 2 cursos académicos</span></div><time>2020–2022</time></div><div class="step predoc"><div class="ico">↑</div><div><b>Contrato predoctoral FPI</b><span>Claudia Ferrer Asensio · 4 cursos académicos</span></div><time>2024–2027</time></div><div class="step novel"><div class="ico">◎</div><div><b>Formación Profesorado Novel UJI</b><span>Claudia Ferrer Asensio · 2 cursos académicos</span></div><time>2024–2026</time></div><div class="step predoc"><div class="ico">↑</div><div><b>Contrato predoctoral PNSD</b><span>Álvaro Ortega Pérez · 1 año</span></div><time>2024–2025</time></div><div class="step init studentInteractive" onclick="openStudent('zaira')"><div class="ico">○</div><div><b>Beca de iniciación a la investigación</b><span>Zaira Denia Rovira · 10 meses · <b>3 congresos</b></span></div><time>2026</time></div>
+</div>
+<div class="estudia"><div class="estudiaTop"><b>Programa Estudia e Investiga</b><strong>9</strong></div><p>Proyectos de Innovación Educativa Institucional · tutorización de alumnado</p><div class="years"><div class="yr">2012–13</div><div class="yr">2013–14</div><div class="yr">2014–15</div><div class="yr">2015–16</div><div class="yr">2020–21</div><div class="yr">2021–22</div><div class="yr">2022–23</div><div class="yr">2023–24</div><div class="yr">2025–26</div></div></div></div></article></section>
+<div class="drawer" id="drawer"><div class="drawerHead"><b id="drawerTitle"></b><button class="close" onclick="closeDrawer()">×</button></div><div class="drawerBody" id="drawerBody"></div></div>
+</main>
+<script>
+const TFG=[{"id": 1, "year": "2013-2014", "title": "Personalidad, actividades de tiempo libre y su relación con los síntomas internalizantes y externalizantes", "student": "Mª Ámparo Pérez Barberá"}, {"id": 2, "year": "2013-2014", "title": "¿Existe relación entre el neuroticismo, el número y valoración de los eventos vitales y el factor de internalización?", "student": "María José Megias Clavijo"}, {"id": 3, "year": "2014-2015", "title": "Adaptación y estudio de las propiedades psicométricas del Cannabis Expectancy Questionnaire (CEQ)", "student": "Lucía Ruíz Valero"}, {"id": 4, "year": "2014-2015", "title": "Adaptación y estudio de las propiedades psicométricas del cuestionario de motivos de consumo de cannabis", "student": "Clara Fayos Pizarro"}, {"id": 5, "year": "2015-2016", "title": "Influencia de los eventos vitales controlables e incontrolables en el desarrollo de la psicopatología en la adolescencia", "student": "Andrea Cuevas Carda"}, {"id": 6, "year": "2015-2016", "title": "Estudio sobre dos variables psicológicas asociadas al consumo de cannabis: Personalidad y expectativas", "student": "Naiara Martínez"}, {"id": 7, "year": "2017-2018", "title": "Relation between personality, pocket money and gambling frequency in adolescents", "student": "Verónica Soriano Linares"}, {"id": 8, "year": "2018-2019", "title": "Gambling during adolescence: The role of playing sports as a risk factor", "student": "Balma Pesudo Carratalá"}, {"id": 9, "year": "2018-2019", "title": "Psychosocial risk factors in minor offenders", "student": "Gemma Esbri Espinosa"}, {"id": 10, "year": "2018-2019", "title": "Drug involvement and the relation with five-factor model of personality", "student": "Laia Tur Cruces"}, {"id": 11, "year": "2019-2020", "title": "Can personality and social norms explain gambling behaviour in adolescents?", "student": "Deborah Casanova Herrero"}, {"id": 12, "year": "2019-2020", "title": "ADHD and five factor model of personality", "student": "Claudia Ferrer Asensio"}, {"id": 13, "year": "2019-2020", "title": "Relationship between five factor model and YPI-S", "student": "Jorge Mayordomo Mansilla"}, {"id": 14, "year": "2020-2021", "title": "Associations between personality and best friend's consumption with marijuana use and marijuana-related problems: a moderation study", "student": "Andrea Esteve Llidó"}, {"id": 15, "year": "2020-2021", "title": "Associations between the FFM of personality and hygienic behaviors during COVID-19 and time organization during lockdown", "student": "Maryyam Iqbal"}, {"id": 16, "year": "2020-2021", "title": "Personality and violent video games use and their relation to bullying and cyberbullying", "student": "Melanie Millán Casas"}, {"id": 17, "year": "2021-2022", "title": "Criterion and incremental validity evidence of the personality inventory for DSM-V Brief (PID-5-BF) in Spanish population", "student": "Silvia Giménez Gómez"}, {"id": 18, "year": "2021-2022", "title": "Validity and reliability evidence for the Brief Problem Monitor (BPM) scores in Spanish adults", "student": "Alicia Rodríguez Navarro"}, {"id": 19, "year": "2021-2022", "title": "Development and validity and reliability evidence of the Peers’ Brief Antisocial Behaviour Scale (P B-ABS)", "student": "Andrea García Chulvi"}, {"id": 20, "year": "2022-2023", "title": "The relation of trauma and impulsivity with cannabis use: a mediation and moderation study with spanish young adults", "student": "Sandro Vera González"}, {"id": 21, "year": "2022-2023", "title": "Development of the simultaneous alcohol and marijuana use motives questionnaire in Spanish young adults", "student": "Noa Bonet Pitarch"}, {"id": 22, "year": "2022-2023", "title": "Development and psychometric properties of the Spanish 5-factor gambling motives questionnaire (GMQ)", "student": "Laura Ramos Moya"}, {"id": 23, "year": "2023-2024", "title": "The relation of trauma exposure and impulsivity with alcohol consumption: a mediation and moderation study", "student": "Sandra Fernández Bermúdez"}, {"id": 24, "year": "2023-2024", "title": "The relation of ADHD and coping motive with alcohol use: a mediation study with Spanish young adults", "student": "Melisa Roselló Velasco"}, {"id": 25, "year": "2023-2024", "title": "Mediation and moderation effects of neuroticism in the association of trauma exposure with depression and suicidal ideation", "student": "Ariadna Granados Sánchez"}, {"id": 26, "year": "2024-2025", "title": "Hierarchical structure of the externalizing spectrum and its relationship with personality traits", "student": "Maria Andreu Palomero"}, {"id": 27, "year": "2024-2025", "title": "The relation of stressful life events and perceived social support with depression: a mediation and moderation study", "student": "Alejandra Castro Márquez"}, {"id": 28, "year": "2024-2025", "title": "Exploring the association of life events and social support with alcohol consumption in Spanish young adults: A mediation and moderation study", "student": "Aida Beltran Gil"}, {"id": 29, "year": "2025-2026", "title": "The association of borderline personality traits and stressful life events with non-suicidal self-injury in university students: A mediation and moderation Study.", "student": "Crisbeily Miguelina Jimenez Santana"}, {"id": 30, "year": "2025-2026", "title": "The role of perceived social support in the relationship between stressful life events and problem gambling in Spanish young adults: A mediation and moderation study", "student": "Olga Abad Arnauda"}, {"id": 31, "year": "2025-2026", "title": "The relationship between borderline personality disorder and non-suicidal self injury: Exploring the mediating and moderating role of emotion regulation strategies", "student": "Cristina Pretel Vidal"}]; const CATS=[{"name": "Personalidad y diferencias individuales", "ids": [1, 2, 6, 7, 10, 11, 12, 13, 14, 15, 16, 17, 20, 23, 25, 26, 29, 31], "keywords": "personalidad · FFM · neuroticismo · impulsividad"}, {"name": "Adicciones y conductas adictivas", "ids": [3, 4, 6, 7, 8, 10, 11, 14, 16, 20, 21, 22, 23, 24, 28, 30], "keywords": "alcohol · cannabis · gambling · gaming"}, {"name": "Psicopatología y salud mental", "ids": [1, 2, 5, 12, 16, 19, 20, 23, 24, 25, 26, 27, 29, 31], "keywords": "problemas interiorizados · problemas exteriorizados · depresión · conducta antisocial"}, {"name": "Evaluación, instrumentos y psicometría", "ids": [3, 4, 13, 17, 18, 19, 21, 22], "keywords": "cuestionarios · validez · fiabilidad · adaptación"}];
+const IMPACT={"1": {"congress": "III Jornada AIIDI · Barbastro · 2014"}, "2": {"congress": "III Jornada AIIDI · Barbastro · 2014"}, "3": {"congress": "IV Jornadas AIIDI · Madrid · 2015", "article": "Development and validation of the Marijuana Motives Measure Short Form"}, "5": {"congress": "III Congreso Internacional en Contextos Clínicos y de la Salud · Murcia · 2017"}, "6": {"article": "Development and validation of the Marijuana Motives Measure Short Form"}, "7": {"congress": "4th International Congress of Clinical and Health Psychology on Children and Adolescents · Palma de Mallorca · 2018"}, "8": {"congress": "5th International Congress of Clinical and Health Psychology on Children and Adolescents · Oviedo · 2019"}, "14": {"congress": "X Jornadas AIIDI · Madrid · 2021"}, "18": {"congress": "XI Jornada AIIDI · Málaga · 2022"}, "17": {"congress": "XI Jornada AIIDI · Málaga · 2022"}, "21": {"congress": "10th International Congress of Clinical and Health Psychology in Children and Adolescents · Valencia · 2023"}, "22": {"congress": "10th International Congress of Clinical and Health Psychology in Children and Adolescents · Valencia · 2023"}, "20": {"congress": "XII Jornadas AIIDI · Sevilla · 2023"}, "23": {"congress": "XIII Jornada AIIDI · Elche · 2024"}, "24": {"congress": "10th International Congress of Clinical and Health Psychology in Children and Adolescents · 2024"}};
+function openBand(i){
+  const c=CATS[i];
+  document.getElementById('drawerTitle').textContent=c.name+' · '+c.ids.length+' TFG vinculados';
+  const items=c.ids.map(id=>TFG.find(x=>x.id===id)).map(x=>{
+    const im=IMPACT[x.id]||{};
+    const congress=im.congress ? `<div class="impactRow congress"><span>DIFUSIÓN EN CONGRESO</span><p>${im.congress}</p></div>` : '';
+    const article=im.article ? `<div class="impactRow article"><span>ARTÍCULO CIENTÍFICO</span><p>${im.article}</p></div>` : '';
+    return `<div class="tfg"><b>${x.title}</b><span>${x.year} · ${x.student}</span>${congress}${article}</div>`;
+  }).join('');
+  document.getElementById('drawerBody').innerHTML=items;
+  document.getElementById('drawer').classList.add('show');
+}
+
+const STUDENT_OUTPUTS={"alba": {"name": "Alba Monfil Carratalá", "items": [{"type": "CONGRESO", "title": "Versión española del Bergen Social Media Addiction Scale (BSMAS), aspectos psicométricos y relación con la personalidad", "where": "VIII Jornadas AIIDI · Lleida · 2019"}, {"type": "CONGRESO", "title": "The role of the Five-factor model of personality traits on social media addiction among Spanish adolescents", "where": "European Conference of Personality (ECP) 20 · Madrid · 2022"}, {"type": "ARTÍCULO CIENTÍFICO", "title": "Social media addiction, personality, psychopathology, and gender: Cross-sectional and longitudinal findings in adolescents", "where": "Adicciones · 2025"}]}, "zaira": {"name": "Zaira Denia Rovira", "items": [{"type": "CONGRESO", "title": "Efectividad de las intervenciones psicológicas en el tratamiento de los terrores nocturnos: Una revisión sistemática", "where": "X Jornades d’Investigació de la Facultat de Ciències de la Salut · Castellón de la Plana · 2025"}, {"type": "CONGRESO", "title": "El papel mediador y moderador del apoyo social percibido en la relación de la personalidad con el consumo de alcohol", "where": "XI Jornades d’Investigació de la Facultat de Ciències de la Salut · Castellón de la Plana · 2026"}, {"type": "CONGRESO", "title": "Factores asociados al uso simultáneo de alcohol y marihuana (SAM) en adultos jóvenes: Personalidad, psicopatología y uso de sustancias", "where": "XI Jornades d’Investigació de la Facultat de Ciències de la Salut · Castellón de la Plana · 2026"}]}};
+function openStudent(key){
+  const s=STUDENT_OUTPUTS[key];
+  if(!s) return;
+  document.getElementById('drawerTitle').textContent=s.name+' · productividad';
+  document.getElementById('drawerBody').innerHTML=s.items.map(it=>`
+    <div class="studentOutput ${it.type.startsWith('ARTÍCULO')?'article':''}">
+      <span>${it.type}</span>
+      <b>${it.title}</b>
+      <p>${it.where}</p>
+    </div>`).join('');
+  document.getElementById('drawer').classList.add('show');
+}
+
+function closeDrawer(){document.getElementById('drawer').classList.remove('show')}
+</script>
+<script id="click-outside-close">
+document.addEventListener('click', function(ev){
+  const d=document.getElementById('drawer');
+  if(!d) return;
+  const isOpen=d.classList.contains('open') || d.classList.contains('show');
+  if(!isOpen) return;
+  const clickedInside=d.contains(ev.target);
+  const clickedTrigger=ev.target.closest('[onclick*="open"]');
+  if(!clickedInside && !clickedTrigger){
+    if(typeof closeDrawer==='function') closeDrawer();
+    else {
+      d.classList.remove('open');
+      d.classList.remove('show');
+    }
+  }
+});
+</script>
+</body></html>

@@ -32,7 +32,6 @@ function awardContent(){
 function openP(i){
  const x=P[i];
  let extra=x.annualities?`<p><b>${x.annualities} anualidades</b></p>`:"";
- if(x.id==="B2018IP") extra+=awardContent();
  document.getElementById("dc").innerHTML=`<div class="dy">${x.year}</div><h2>${x.title}</h2><span class="badge ${x.kind}">${names[x.kind]}</span><p><b>Participación:</b> ${x.role}</p>${extra}`;
  document.getElementById("drawer").classList.add("open");
 }

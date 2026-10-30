@@ -80,6 +80,74 @@
 .studentOutput b{display:block;font-size:8.4px;line-height:1.25;color:var(--blue)}
 .studentOutput p{font-size:7px;color:var(--muted);margin:3px 0 0;line-height:1.25}
 </style>
+
+<style id="presentation-fit-30oct">
+/* Fit the main overview to the iframe; only opened detail lists scroll. */
+html,body{height:100%;overflow:hidden}
+.page{height:100dvh;min-height:0;padding:12px 16px;display:grid;grid-template-rows:64px 50px minmax(0,1fr);overflow:hidden}
+.top{height:auto;min-height:0;gap:10px}
+.title{height:auto;padding-top:8px;min-height:0}
+.title h1{font-size:23px;line-height:1.15}
+.title p{margin-top:3px;font-size:9px}
+.main{height:auto;min-height:0;grid-template-columns:1.02fr 1fr;gap:12px}
+.panel{min-height:0}
+.head{height:36px;padding:7px 12px;gap:8px}
+.head strong{font-size:11px}.head span{font-size:7px}
+.left{grid-template-rows:36px minmax(0,1fr)}
+.bands{min-height:0;padding:10px 12px 8px;display:grid;grid-template-rows:repeat(4,minmax(0,1fr)) auto;gap:8px}
+.band{min-height:0;padding:8px 10px;display:flex;flex-direction:column;justify-content:center}
+.bandTop{align-items:center}.bandTop b{font-size:11px}.bandTop em{font-size:20px}
+.track{height:10px;flex-shrink:0;margin:6px 0 4px}
+.keywords{font-size:8px;line-height:1.2}.note{font-size:7px;margin-top:0}
+.right{grid-template-rows:36px minmax(0,1fr)!important}
+.rightScroll{min-height:0;grid-template-rows:minmax(0,1fr) auto;overflow:hidden}
+.path{min-height:0;display:grid;grid-template-rows:repeat(8,minmax(0,1fr));gap:4px!important;padding:8px 10px!important;overflow:hidden!important}
+.step{min-height:0!important;grid-template-columns:26px minmax(0,1fr) 62px;padding:4px 7px!important;gap:6px}
+.ico{width:24px;height:24px;font-size:14px;border-radius:7px}
+.step b{font-size:9px;line-height:1.12}.step span{font-size:7.7px;line-height:1.15;margin-top:2px}.step time{font-size:7.8px}
+.estudia{padding:6px 10px 8px}.estudiaTop b{font-size:10px}.estudiaTop strong{font-size:18px}
+.estudia p{font-size:7px;margin:1px 0 4px}.yr{padding:4px 1px;font-size:6.7px}
+.drawer{position:fixed;top:12px;right:16px;width:min(535px,calc(100vw - 32px));height:calc(100dvh - 24px);max-height:650px}
+.drawer.show{display:flex;flex-direction:column}.drawerHead{flex-shrink:0}.drawerBody{height:auto;min-height:0;flex:1;overflow:auto}
+@media(max-height:570px){
+.page{padding:8px 12px;grid-template-rows:56px 44px minmax(0,1fr)}
+.title h1{font-size:21px}.title p{font-size:8px}
+.head{height:32px}.left{grid-template-rows:32px minmax(0,1fr)}.right{grid-template-rows:32px minmax(0,1fr)!important}
+.path{gap:3px!important;padding:5px 8px!important}.step{padding:2px 5px!important}.ico{width:21px;height:21px}
+.step b{font-size:8px}.step span{font-size:7px}.step time{font-size:7px}
+.bands{padding:7px 9px;gap:6px}.band{padding:5px 8px}.bandTop b{font-size:10px}.keywords{font-size:7px}
+.estudia{padding:4px 8px 5px}.estudia p{display:none}.yr{padding:3px 1px}.estudiaTop strong{font-size:16px}
+}
+@media(max-width:820px){
+.page{height:100dvh;min-height:0;overflow:hidden}.main{height:auto;grid-template-columns:1fr 1fr}.rightScroll{max-height:none}
+.kpi{padding:6px 8px;gap:6px}.kpi strong{font-size:23px}.kpi span{font-size:9px}.kpi small{font-size:6.5px}
+.kpiTFG{grid-template-columns:30px 1fr auto!important;column-gap:5px!important}.kpiFlow{gap:3px;padding-left:5px}.kpiFlow>div{min-width:25px}.kpiFlow b{font-size:16px}
+.head span{display:none}.step{grid-template-columns:20px minmax(0,1fr) 46px;gap:3px}.step b{font-size:7.5px}.step span{font-size:6.5px}.step time{font-size:6.5px}.ico{width:19px;height:19px}
+.bandTop b{font-size:9px}.keywords{font-size:6.7px}.years{gap:1px}.yr{font-size:5.5px}
+}
+</style>
+
+<style id="balanced-columns-30oct">
+.main{grid-template-columns:1fr 1fr;gap:12px}
+.left{display:grid;grid-template-rows:36px minmax(0,1fr) auto}
+.bands{width:100%;align-items:stretch;justify-items:stretch;grid-template-columns:minmax(0,1fr);grid-template-rows:repeat(4,minmax(0,1fr)) auto;gap:7px}
+.band{width:100%;max-width:none;padding:7px 10px}
+.left>.estudia{margin:0;border-top:1px solid var(--line);padding:8px 12px 10px}
+.left>.estudia .estudiaTop{margin-bottom:3px}
+.left>.estudia .years{gap:4px}
+.left>.estudia .yr{padding:5px 1px}
+.rightScroll{display:block;min-height:0;height:100%;max-height:none}
+.path{height:100%;padding:10px 12px!important;gap:7px!important}
+.step{padding:6px 8px!important;min-height:0!important}
+.step b{line-height:1.22}.step span{line-height:1.24;margin-top:3px}
+@media(max-height:570px){
+.left{grid-template-rows:32px minmax(0,1fr) auto}
+.left>.estudia{padding:5px 9px 7px}.left>.estudia .yr{padding:3px 1px}
+.bands{gap:5px;padding:7px 9px}.band{padding:4px 8px}
+.path{padding:6px 9px!important;gap:4px!important}.step{padding:3px 6px!important}
+}
+</style>
+<style id="programme-colour-consistency">.estudiaTop strong{color:var(--gold)}</style>
 </head><body><main class="page">
 <section class="top">
 <div class="kpi kpiTFG">
@@ -95,8 +163,8 @@
         <div><b>1</b><small>artículo</small></div>
       </div>
     </div>
-<div class="kpi green"><strong>8</strong><div><span>Tutorizaciones especializadas</span><small>6 estudiantes · becas, contratos, prácticas y formación</small></div></div>
 <div class="kpi gold"><strong>9</strong><div><span>Proyectos Estudia e Investiga</span><small>Tutorización de alumnado · 9 cursos académicos</small></div></div>
+<div class="kpi green"><strong>8</strong><div><span>Tutorizaciones especializadas</span><small>6 estudiantes · becas, contratos, prácticas y formación</small></div></div>
 </section>
 <section class="title"><h1>Tutorización y formación de estudiantes</h1><p>Dirección de TFG, formación investigadora y tutorización de alumnado en diferentes etapas de su trayectoria académica.</p></section>
 <section class="main">
@@ -104,11 +172,11 @@
 <div class="bands">
 <div class="band" onclick="openBand(0)"><div class="bandTop"><b>Personalidad y diferencias individuales</b><em>18</em></div><div class="track"><div class="fill" style="width:100.0%"></div></div><div class="keywords">personalidad · FFM · neuroticismo · impulsividad</div></div><div class="band" onclick="openBand(1)"><div class="bandTop"><b>Adicciones y conductas adictivas</b><em>16</em></div><div class="track"><div class="fill" style="width:88.9%"></div></div><div class="keywords">alcohol · cannabis · gambling · gaming</div></div><div class="band" onclick="openBand(2)"><div class="bandTop"><b>Psicopatología y salud mental</b><em>14</em></div><div class="track"><div class="fill" style="width:77.8%"></div></div><div class="keywords">problemas interiorizados · problemas exteriorizados · depresión · conducta antisocial</div></div><div class="band" onclick="openBand(3)"><div class="bandTop"><b>Evaluación, instrumentos y psicometría</b><em>8</em></div><div class="track"><div class="fill" style="width:44.4%"></div></div><div class="keywords">cuestionarios · validez · fiabilidad · adaptación</div></div>
 <div class="note">Las categorías no son excluyentes: un TFG puede contribuir a más de una banda temática.</div>
-</div></article>
+</div><div class="estudia"><div class="estudiaTop"><b>Programa Estudia e Investiga</b><strong>9</strong></div><p>Proyectos de Innovación Educativa Institucional · tutorización de alumnado</p><div class="years"><div class="yr">2012–13</div><div class="yr">2013–14</div><div class="yr">2014–15</div><div class="yr">2015–16</div><div class="yr">2020–21</div><div class="yr">2021–22</div><div class="yr">2022–23</div><div class="yr">2023–24</div><div class="yr">2025–26</div></div></div></article>
 <article class="panel right"><div class="head"><strong>Itinerarios de formación y tutorización</strong><span>Modalidades registradas</span></div><div class="rightScroll"><div class="path">
 <div class="step collab"><div class="ico">◇</div><div><b>Beca de colaboración MEC</b><span>Andrea Cuevas Carda · 1 curso académico</span></div><time>2015–2016</time></div><div class="step practices studentInteractive" onclick="openStudent('alba')"><div class="ico">▣</div><div><b>Prácticas académicas externas</b><span>Alba Monfil Carratalá · 1 curso académico · <b>2 congresos · 1 artículo científico</b></span></div><time>2018–2019</time></div><div class="step predoc"><div class="ico">↑</div><div><b>Contrato predoctoral FPI</b><span>Verónica Vidal Arenas · 4 cursos académicos</span></div><time>2019–2024</time></div><div class="step novel"><div class="ico">◎</div><div><b>Formación Profesorado Novel UJI</b><span>Verónica Vidal Arenas · 2 cursos académicos</span></div><time>2020–2022</time></div><div class="step predoc"><div class="ico">↑</div><div><b>Contrato predoctoral FPI</b><span>Claudia Ferrer Asensio · 4 cursos académicos</span></div><time>2024–2027</time></div><div class="step novel"><div class="ico">◎</div><div><b>Formación Profesorado Novel UJI</b><span>Claudia Ferrer Asensio · 2 cursos académicos</span></div><time>2024–2026</time></div><div class="step predoc"><div class="ico">↑</div><div><b>Contrato predoctoral PNSD</b><span>Álvaro Ortega Pérez · 1 año</span></div><time>2024–2025</time></div><div class="step init studentInteractive" onclick="openStudent('zaira')"><div class="ico">○</div><div><b>Beca de iniciación a la investigación</b><span>Zaira Denia Rovira · 10 meses · <b>3 congresos</b></span></div><time>2026</time></div>
 </div>
-<div class="estudia"><div class="estudiaTop"><b>Programa Estudia e Investiga</b><strong>9</strong></div><p>Proyectos de Innovación Educativa Institucional · tutorización de alumnado</p><div class="years"><div class="yr">2012–13</div><div class="yr">2013–14</div><div class="yr">2014–15</div><div class="yr">2015–16</div><div class="yr">2020–21</div><div class="yr">2021–22</div><div class="yr">2022–23</div><div class="yr">2023–24</div><div class="yr">2025–26</div></div></div></div></article></section>
+</div></article></section>
 <div class="drawer" id="drawer"><div class="drawerHead"><b id="drawerTitle"></b><button class="close" onclick="closeDrawer()">×</button></div><div class="drawerBody" id="drawerBody"></div></div>
 </main>
 <script>
